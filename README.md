@@ -14,6 +14,7 @@ Launch heatlamp/core with `docker`. You'll need to mount the Docker socket so th
 docker run heatlamp/core \
   --volume /var/run/docker.sock:/var/run/docker.sock \
   --port 10100:10100 \
+  --env HEATLAMP_SCRIPT=triggered.sh
   --restart always
 ```
 
@@ -21,4 +22,4 @@ docker run heatlamp/core \
 
 Configure Heatlamp by setting environment variables within the container.
 
-*Pending*
+`HEATLAMP_SCRIPT`: Bash script to be executed when a webhook is received.
