@@ -1,12 +1,37 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
+import sys
 from flask import Flask, render_template
 from sh import git
 
 app = Flask(__name__)
 
 version = git("rev-parse", "--short", "HEAD").strip()
+command = os.getenv("HEATLAMP_COMMAND")
+
+
+def validate():
+    """
+    Validate the application configuration before launching.
+    """
+
+    missing = []
+    if not command:
+        missing.append((
+            "HEATLAMP_COMMAND",
+            "The command to execute when a webhook is triggered."
+        ))
+
+    if missing:
+        print("Missing required configuration values:\n", file=sys.stderr)
+        for envvar, purpose in missing:
+            print(" {}: {}".format(envvar, purpose), file=sys.stderr)
+        print(file=sys.stderr)
+        sys.exit(1)
+
+validate()
 
 
 @app.route("/", methods=["GET"])
