@@ -1,0 +1,49 @@
+/* Stylesheet for Heatlamp HTML templates. */
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+h1 {
+  margin: 50px auto 10px auto;
+  text-align: center;
+  letter-spacing: 4px;
+}
+
+.tagline {
+  margin: 10px auto 50px auto;
+  text-align: center;
+  font-style: italic;
+  color: #aaa;
+}
+
+.information {
+  margin: 10px auto 20px auto;
+  width: 290px;
+}
+
+.information code {
+  background-color: #ccc;
+  font-family: monospace;
+  padding: 2px 5px;
+  margin-left: 3px;
+}
+
+form {
+  margin: 0 auto;
+  width: 300px;
+  border: solid 1px #ccc;
+  border-radius: 10px;
+  padding: 30px 0;
+  text-align: center;
+}
+
+form input {
+  padding: 10px 50px;
+  background-color: #fdde96;
+  border-radius: 5px;
+  font-size: 150%;
+  font-variant: small-caps;
+}
