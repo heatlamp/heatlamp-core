@@ -3,13 +3,14 @@
 
 import os
 import sys
+import subprocess
 from flask import Flask, render_template
 from sh import git
 
 app = Flask(__name__)
 
 version = git("rev-parse", "--short", "HEAD").strip()
-command = os.getenv("HEATLAMP_COMMAND")
+command = os.getenv("HEATLAMP_SCRIPT")
 
 
 def validate():
@@ -20,8 +21,8 @@ def validate():
     missing = []
     if not command:
         missing.append((
-            "HEATLAMP_COMMAND",
-            "The command to execute when a webhook is triggered."
+            "HEATLAMP_SCRIPT",
+            "The shell script to execute when a webhook is triggered."
         ))
 
     if missing:
@@ -51,7 +52,12 @@ def refresh():
     Webhook accepted. Perform the configured action.
     """
 
-    return "yes"
+    status = subprocess.call(["/bin/bash", command])
+
+    if status == 0:
+        return "success", 200
+    else:
+        return "failure", 500
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=10100)
