@@ -1,4 +1,4 @@
-FROM python:3.4.3
+FROM python:2.7.9-slim
 MAINTAINER Ash Wilson <smashwilson@gmail.com>
 
 RUN apt-get update
