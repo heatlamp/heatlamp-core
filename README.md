@@ -27,3 +27,5 @@ docker run heatlamp/core \
 Configure Heatlamp by setting environment variables within the container.
 
 `HEATLAMP_SCRIPT`: Bash script to be executed when a webhook is received.
+
+## A change in a pull request
